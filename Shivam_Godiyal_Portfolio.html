@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivam Godiyal — Digital Design & Tech Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --ink-soft: #5a5a5a;
+    --ink-muted: #9a9a9a;
+    --cream: #f7f4ef;
+    --cream-dark: #ece9e2;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --teal: #1a6b6b;
+    --teal-light: #e0f0f0;
+    --white: #ffffff;
+    --card-border: rgba(0,0,0,0.09);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(247,244,239,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .hero-text { padding-top: 5rem; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 0.3rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-title {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;
+    position: relative;
+  }
+  .hero-graphic {
+    width: 380px;
+    height: 460px;
+    background: var(--ink);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;
+  }
+  .hero-graphic-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a3333 100%);
+  }
+  .hero-monogram {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    font-family: 'Playfair Display', serif;
+    font-size: 9rem;
+    font-weight: 700;
+    color: rgba(201,168,76,0.18);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+  .hero-badge {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .hero-badge-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    font-weight: 700;
+    display: block;
+  }
+  .hero-badge-role {
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.3rem;
+  }
+  .hero-tag {
+    position: absolute;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .hero-tag-1 { top: 2rem; left: -1.5rem; }
+  .hero-tag-2 { top: 6.5rem; right: -1.8rem; }
+  .hero-tag-3 { bottom: 6rem; left: -2rem; }
+  .floating-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.25;
+    animation: float 6s ease-in-out infinite;
+  }
+  .dot-1 { width: 12px; height: 12px; top: 15%; right: 5%; animation-delay: 0s; }
+  .dot-2 { width: 8px; height: 8px; bottom: 20%; right: 12%; animation-delay: 2s; }
+  .dot-3 { width: 6px; height: 6px; top: 40%; left: 2%; animation-delay: 4s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  /* ── SECTION STYLES ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-heading em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .section-sub {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin-bottom: 3.5rem;
+    line-height: 1.8;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: var(--ink);
+    color: var(--white);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-strip .section-heading { color: var(--white); }
+  .about-strip .section-sub { color: rgba(255,255,255,0.65); margin-bottom: 0; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* ── SKILLS ── */
+  .skills-section { background: var(--cream); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 2rem 1.8rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .skill-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+  .skill-tools {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+  .skill-tag {
+    display: inline-block;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin: 0.15rem 0.1rem 0;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PORTFOLIO GRID ── */
+  .portfolio-section { background: var(--cream-dark); }
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 0.45rem 1.2rem;
+    border: 1.5px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .portfolio-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+  .portfolio-card.hidden { display: none; }
+  .card-thumb {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-thumb-inner {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    transition: transform 0.4s;
+  }
+  .portfolio-card:hover .card-thumb-inner { transform: scale(1.05); }
+  .thumb-design { background: linear-gradient(135deg, #1a3a3a, #0d5555); color: rgba(201,168,76,0.9); }
+  .thumb-video { background: linear-gradient(135deg, #2a1a0a, #7a3a10); color: rgba(255,200,100,0.85); }
+  .thumb-web { background: linear-gradient(135deg, #0a1a3a, #1a3a6a); color: rgba(100,180,255,0.85); }
+  .thumb-elearn { background: linear-gradient(135deg, #1a0a2a, #4a1a6a); color: rgba(200,150,255,0.85); }
+  .thumb-brand { background: linear-gradient(135deg, #3a0a0a, #7a2020); color: rgba(255,150,130,0.85); }
+  .card-cat-badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    color: var(--white);
+  }
+  .badge-design { background: rgba(26,107,107,0.85); }
+  .badge-video { background: rgba(122,58,16,0.85); }
+  .badge-web { background: rgba(26,58,106,0.85); }
+  .badge-elearn { background: rgba(74,26,106,0.85); }
+  .badge-brand { background: rgba(122,32,32,0.85); }
+  .card-body { padding: 1.4rem 1.5rem; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .card-tools {
+    margin-top: 0.9rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .tool-tag {
+    font-size: 0.67rem;
+    padding: 0.18rem 0.5rem;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 2px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .experience-section { background: var(--cream); }
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.5rem; bottom: 0;
+    width: 1.5px;
+    background: var(--cream-dark);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.8rem; top: 0.45rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .timeline-company {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.25rem;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-meta {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+  .timeline-desc {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--ink);
+    color: var(--white);
+    text-align: center;
+    padding: 7rem 4rem;
+  }
+  .contact-section .section-label { color: var(--gold); }
+  .contact-section .section-heading { color: var(--white); margin-bottom: 1rem; }
+  .contact-section .section-sub { color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 2.5rem; }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--gold); }
+  .contact-link svg { flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in:nth-child(2) { transition-delay: 0.1s; }
+  .fade-in:nth-child(3) { transition-delay: 0.2s; }
+  .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 2rem 4rem; text-align: center; }
+    .hero-desc { margin: 0 auto 2rem; }
+    .hero-ctas { justify-content: center; }
+    .hero-visual { display: none; }
+    .about-strip { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; }
+    section { padding: 4rem 2rem; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Shivam Godiyal</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Digital Design &amp; Tech Solutions</p>
+    <h1 class="hero-name">Shivam<br><em>Godiyal</em></h1>
+    <p class="hero-title">Graphic Designer &nbsp;·&nbsp; Video Editor &nbsp;·&nbsp; E-Learning Developer &nbsp;·&nbsp; AI Specialist</p>
+    <p class="hero-desc">Crafting visual stories and digital experiences that connect brands with people — from social media campaigns to interactive e-learning modules for international clients.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div style="position: relative;">
+      <div class="floating-dot dot-1"></div>
+      <div class="floating-dot dot-2"></div>
+      <div class="floating-dot dot-3"></div>
+      <div class="hero-graphic">
+        <div class="hero-graphic-bg"></div>
+        <span class="hero-monogram">SG</span>
+        <div class="hero-badge">
+          <span class="hero-badge-name">Shivam Godiyal</span>
+          <span class="hero-badge-role">Digital Design Specialist</span>
+        </div>
+      </div>
+      <span class="hero-tag hero-tag-1">Graphic Design</span>
+      <span class="hero-tag hero-tag-2">Video Production</span>
+      <span class="hero-tag hero-tag-3">E-Learning &amp; AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-strip" id="about">
+  <div>
+    <p class="section-label">About Me</p>
+    <h2 class="section-heading" style="color:#fff;">Creating work that <em style="color:#c9a84c;">speaks</em> before words do</h2>
+    <p class="section-sub">Creative and technically skilled professional with over a year of full-time experience at LSF Global. Specialising in graphic design, video production, SEO-friendly web development, and AI-powered automation tools — collaborating with international teams to deliver compelling digital content.</p>
+  </div>
+  <div class="about-stats">
+    <div class="stat-item">
+      <span class="stat-num">1+</span>
+      <span class="stat-label">Years Full-time Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Roles Progressed Through</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">360</span>
+      <span class="stat-label">Articulate 360 Modules Built</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">International Clients Served</span>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <p class="section-label">What I Do</p>
+  <h2 class="section-heading">Skills &amp; <em>Expertise</em></h2>
+  <p class="section-sub">A versatile toolkit built across design, technology, and storytelling — enabling end-to-end delivery of creative projects.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <span class="skill-icon">🎨</span>
+      <p class="skill-title">Graphic Design</p>
+      <div class="skill-tools">
+        <span class="skill-tag">Adobe Illustrator</span>
+        <span class="skill-tag">Adobe Photoshop</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Branding & Identity</span>
+        <span class="skill-tag">Social Media Graphics</span>
+        <span class="skill-tag">Infographics</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <span class="skill-icon">🎬</span>
+      <p class="skill-title">Video Production</p>
+      <div class="skill-tools">
+        <span class="skill-tag">Video Editing</span>
+        <span class="skill-tag">Promotional Content</span>
+        <span class="skill-tag">Workshop Videos</span>
+        <span class="skill-tag">International Clients</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <span class="skill-icon">🌐</span>
+      <p class="skill-title">Web &amp; E-commerce</p>
+      <div class="skill-tools">
+        <span class="skill-tag">Webpage Layout</span>
+        <span class="skill-tag">On-Page SEO</span>
+        <span class="skill-tag">Keyword Optimisation</span>
+        <span class="skill-tag">Meta Tags &amp; Structure</span>
+        <span class="skill-tag">E-commerce Management</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <span class="skill-icon">📚</span>
+      <p class="skill-title">E-Learning Development</p>
+      <div class="skill-tools">
+        <span class="skill-tag">Articulate 360</span>
+        <span class="skill-tag">Rise</span>
+        <span class="skill-tag">Storyline</span>
+        <span class="skill-tag">Interactive Modules</span>
+        <span class="skill-tag">Client Training</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <span class="skill-icon">🤖</span>
+      <p class="skill-title">AI &amp; Automation</p>
+      <div class="skill-tools">
+        <span class="skill-tag">AI Chatbot Development</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">AI Tools Integration</span>
+        <span class="skill-tag">Workflow Automation</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <span class="skill-icon">🤝</span>
+      <p class="skill-title">Soft Skills</p>
+      <div class="skill-tools">
+        <span class="skill-tag">International Collaboration</span>
+        <span class="skill-tag">Client Communication</span>
+        <span class="skill-tag">Creative Problem-Solving</span>
+        <span class="skill-tag">English (Professional)</span>
+        <span class="skill-tag">Hindi (Native)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section" id="work">
+  <p class="section-label">Portfolio</p>
+  <h2 class="section-heading">Selected <em>Work</em></h2>
+  <p class="section-sub">A showcase of design, video, and digital projects spanning marketing campaigns, e-learning, and web experiences.</p>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Work</button>
+    <button class="filter-btn" data-filter="design">Graphic Design</button>
+    <button class="filter-btn" data-filter="video">Video</button>
+    <button class="filter-btn" data-filter="web">Web &amp; SEO</button>
+    <button class="filter-btn" data-filter="elearn">E-Learning</button>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-card fade-in" data-cat="design">
+      <div class="card-thumb">
+        <div class="card-thumb-inner thumb-design">Sm</div>
+        <span class="card-cat-badge badge-design">Graphic Design</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">Social Media Campaign Design</p>
+        <p class="card-desc">End-to-end social media visual suite for LSF Global — posts, stories, covers and infographics ensuring brand consistency across platforms.</p>
+        <div class="card-tools">
+          <span class="tool-tag">Adobe Illustrator</span>
+          <span class="tool-tag">Canva</span>
+          <span class="tool-tag">Photoshop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-in" data-cat="video">
+      <div class="card-thumb">
+        <div class="card-thumb-inner thumb-video">▶</div>
+        <span class="card-cat-badge badge-video">Video</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">International Workshop Promo Videos</p>
+        <p class="card-desc">Produced and edited promotional video content for international clients showcasing workshops, events and brand highlights.</p>
+        <div class="card-tools">
+          <span class="tool-tag">Video Editing</span>
+          <span class="tool-tag">Colour Grading</span>
+          <span class="tool-tag">Motion Graphics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-in" data-cat="design">
+      <div class="card-thumb">
+        <div class="card-thumb-inner thumb-brand">Br</div>
+        <span class="card-cat-badge badge-brand">Branding</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">Marketing Collateral Suite</p>
+        <p class="card-desc">Comprehensive set of marketing materials — flyers, brochures, standees and infographics — for campaigns across print and digital.</p>
+        <div class="card-tools">
+          <span class="tool-tag">Adobe Illustrator</span>
+          <span class="tool-tag">Photoshop</span>
+          <span class="tool-tag">Print Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-in" data-cat="elearn">
+      <div class="card-thumb">
+        <div class="card-thumb-inner thumb-elearn">eLn</div>
+        <span class="card-cat-badge badge-elearn">E-Learning</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">Interactive E-Learning Modules</p>
+        <p class="card-desc">Designed and developed interactive e-learning modules using Articulate 360 (Rise &amp; Storyline) for international client training and onboarding programs.</p>
+        <div class="card-tools">
+          <span class="tool-tag">Articulate Rise</span>
+          <span class="tool-tag">Storyline</span>
+          <span class="tool-tag">Instructional Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-in" data-cat="web">
+      <div class="card-thumb">
+        <div class="card-thumb-inner thumb-web">SEO</div>
+        <span class="card-cat-badge badge-web">Web &amp; SEO</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">ilearnpros.com — E-commerce Web Development</p>
+        <p class="card-desc">Managed and developed the e-commerce platform — SEO-friendly page builds, on-page optimisation, keyword research, meta tags and backend administration.</p>
+        <div class="card-tools">
+          <span class="tool-tag">On-Page SEO</span>
+          <span class="tool-tag">WordPress/E-com</span>
+          <span class="tool-tag">Layout Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-in" data-cat="design video">
+      <div class="card-thumb">
+        <div class="card-thumb-inner thumb-video">NcC</div>
+        <span class="card-cat-badge badge-brand">Branding</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">NestCart — Brand Design</p>
+        <p class="card-desc">Created graphic designs for marketing materials at NestCart, delivering visually engaging assets to support the company's digital marketing strategy.</p>
+        <div class="card-tools">
+          <span class="tool-tag">Adobe Illustrator</span>
+          <span class="tool-tag">Canva</span>
+          <span class="tool-tag">Brand Consistency</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <p class="section-label">Journey</p>
+  <h2 class="section-heading">Work <em>Experience</em></h2>
+  <p class="section-sub">A career path built through progressive roles and hands-on client work.</p>
+
+  <div style="max-width: 700px;">
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-company">LSF Global</p>
+        <p class="timeline-role">Assistant — Digital Design &amp; Tech Solutions</p>
+        <p class="timeline-meta">Sep 2025 – Apr 2026 &nbsp;·&nbsp; Full-time &nbsp;·&nbsp; Dehradun, India</p>
+        <p class="timeline-desc">Led digital design for marketing campaigns, developed SEO-friendly webpages for ilearnpros.com, built interactive e-learning modules using Articulate 360, implemented AI chatbots and automation tools, and produced promotional videos for international clients.</p>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-company">LSF Global</p>
+        <p class="timeline-role">Digital Design Assistant</p>
+        <p class="timeline-meta">Mar 2025 – Sep 2025 &nbsp;·&nbsp; Full-time &nbsp;·&nbsp; Dehradun, India</p>
+        <p class="timeline-desc">Created digital assets for marketing and brand communication. Developed e-learning content for client training and onboarding programs. Contributed to AI tool research and implementation for client-facing projects.</p>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-company">LSF Global</p>
+        <p class="timeline-role">Digital Design Intern</p>
+        <p class="timeline-meta">Nov 2024 – Jan 2025 &nbsp;·&nbsp; Internship &nbsp;·&nbsp; Dehradun, India</p>
+        <p class="timeline-desc">Designed social media posts, flyers, brochures, standees and infographics. Produced and edited video content for international clients. Coordinated with international team members to deliver client requirements efficiently.</p>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-company">NestCart</p>
+        <p class="timeline-role">Junior Graphic Designer</p>
+        <p class="timeline-meta">Jan 2024 – Jul 2024 &nbsp;·&nbsp; Part-time &nbsp;·&nbsp; Dehradun, India</p>
+        <p class="timeline-desc">Created graphic designs for marketing materials ensuring brand consistency across communication channels. Delivered visually engaging assets to support the company's digital marketing strategy.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label">Let's Talk</p>
+  <h2 class="section-heading">Open to <em style="color:#c9a84c;">Opportunities</em></h2>
+  <p class="section-sub">Looking for a creative partner for your next design, video or digital project? I'd love to hear from you.</p>
+  <div class="contact-links">
+    <a href="mailto:shivamgodiyal32@gmail.com" class="contact-link">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      shivamgodiyal32@gmail.com
+    </a>
+    <a href="tel:+917505022783" class="contact-link">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +91 75050 22783
+    </a>
+    <a href="https://linkedin.com/in/shivam-godiyal-290072299" target="_blank" class="contact-link">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/shivam-godiyal
+    </a>
+    <a href="#" class="contact-link">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Dehradun, Uttarakhand, India
+    </a>
+  </div>
+  <a href="mailto:shivamgodiyal32@gmail.com" class="btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff;">Send Me a Message</a>
+</section>
+
+<footer>
+  <p>© 2026 Shivam Godiyal. All rights reserved.</p>
+  <p>Digital Design &amp; Tech Solutions Specialist</p>
+</footer>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.portfolio-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const cat = card.dataset.cat || '';
+        if (filter === 'all' || cat.includes(filter)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
